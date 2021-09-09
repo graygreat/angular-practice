@@ -6,19 +6,33 @@
     
 </head>
 <body ng-app="todo" ng-controller="TodoCtrl">
-    <h1>Todo</h1>
 
-    <input type="text" ng-model="todo.title">
-    <input type="checkbox" ng-model="todo.completed">
-    <date>{{ todo.createdAt }}</date>
+    <div class="container">
+        <h1>Todo List</h1>
 
+        <ul class="list-unstyled">
+            <li ng-repeat="todo in todos | filter:statusFilter">
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input class="form-check-input mt-0" type="checkbox" value="" ng-model="todo.completed">
+                    </div>
+                    <input type="text" class="form-control" ng-model="todo.title">
+                    <button class="btn btn-danger" type="button" id="button-addon2" ng-click="remove(todo)">삭제</button>
+                </div>
+                <date>{{ todo.createdAt | date:'yyyy-MM-dd HH:mm:ss'}}</date>
+            </li>
+        </ul>
+
+        <button class="btn btn-primary" ng-click="statusFilter={completed:true}">Completed</button>
+        <button class="btn btn-primary" ng-click="statusFilter={completed:false}">Active</button>
+        <button class="btn btn-primary" ng-click="statusFilter={}">All</button>
+    </div>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <script src="script.js"></script>
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <!-- 부가적인 테마 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    
 </body>
 </html>
