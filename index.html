@@ -8,37 +8,24 @@
 <body ng-app="todo" ng-controller="TodoCtrl">
 
     <div class="container">
-        <!-- <h1>Todo List</h1> -->
         <todo-title></todo-title>
-
-        <form name="todoForm" ng-submit="add(newTodoTitle)">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" ng-model="newTodoTitle" placeholder="새로운 todo를 입력하세요..." minlength="3">
-                <button class="btn btn-success" type="submit">추가</button>
-            </div>
-            <div ng-show="todoForm.$dirty && todoForm.$invalid">
-                <div class="alert alert-warning" role="alert">
-                    3글자 이상 입력하세요.
-                </div>
-            </div>
-        </form>
-
+        
+        <todo-form></todo-form>
         <ul class="list-unstyled">
             <li ng-repeat="todo in todos | filter:statusFilter">
                 <todo-item></todo-item>
             </li>
         </ul>
 
-        <button class="btn btn-primary" ng-click="statusFilter={completed:true}">Completed</button>
-        <button class="btn btn-primary" ng-click="statusFilter={completed:false}">Active</button>
-        <button class="btn btn-primary" ng-click="statusFilter={}">All</button>
+        <todo-filters></todo-filters>
     </div>
 
-    <script src="directives.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers.js"></script>
+    <script src="directives.js"></script>
 </body>
 </html>
